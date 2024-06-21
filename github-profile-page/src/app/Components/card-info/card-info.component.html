@@ -1,0 +1,45 @@
+<div *ngIf="!cards.length">
+  <span>Упсс... Профиль пустой</span>
+</div>
+
+<ng-container *ngIf="cards.length">
+  <div class="view-card">
+    <div class="card-container">
+      <div
+        class="card card-container__card"
+        *ngFor="let card of paginatedCards; let i = index"
+      >
+        <div class="card__header">
+          <span>{{ card.title.substring(0, 23) }}</span>
+        </div>
+        <div class="card__content">
+          <span>{{ card.description.substring(0, 30) }}.</span>
+        </div>
+        <div class="card__inner-btn">
+          <button type="button" class="card__btn" (click)="goDetails(i)">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <div class="pagination__inner-btn">
+        <button type="button" class="pagination__btn" (click)="previousPage()">
+          -
+        </button>
+      </div>
+
+      <div class="pagination__num">
+        <span>{{ currPage }}</span>
+      </div>
+      <div class="pagination__inner-btn">
+        <button type="button" class="pagination__btn" (click)="nextPage()">
+          +
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isLoad"><app-load></app-load></ng-container>
